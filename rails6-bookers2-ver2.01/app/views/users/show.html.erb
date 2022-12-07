@@ -46,6 +46,67 @@
             </tr>
           </tbody>
         </table>
+        
+        <!--一週間の統計-->
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="border">6日目</th>
+              <th class="border">5日目</th>
+              <th class="border">4日目</th>
+              <th class="border">3日目</th>
+              <th class="border">2日目</th>
+              <th class="border">1日目</th>
+              <th class="border">今日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border"><%= @six_days_ago_book.count %></td> <!--6日目-->
+              <td class="border"><%= @five_days_ago_book.count %></td> <!--5日目-->
+              <td class="border"><%= @four_days_ago_book.count %></td> <!--4日目-->
+              <td class="border"><%= @three_days_ago_book.count %></td> <!--3日目-->
+              <td class="border"><%= @two_days_ago_book.count %></td> <!--2日目-->
+              <td class="border"><%= @yesterday_book.count %></td> <!--1日目-->
+              <td class="border"><%= @today_book.count %></td> <!--今日-->
+            </tr>
+          </tbody>
+        </table>
+        <!--一週間の統計-->
+        
+        <!--統計グラフ-->
+        <div class="text-center">７日間の投稿の比率</div>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const ctx = document.getElementById('myChart');
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['6日前', '５日前', '４日前', '３日前', '２日前', '1日前', '今日'],
+              datasets: [{
+                tension: 0.3,
+                label: '投稿数',
+                data: [<%= @six_days_ago_book.count %>,<%= @five_days_ago_book.count %>, <%= @four_days_ago_book.count %>, <%= @three_days_ago_book.count %>, <%= @two_days_ago_book.count %>, <%= @yesterday_book.count %>, <%= @today_book.count %>,],
+                backgroundColor: [ 'white' ],
+                borderColor: ['blue'],
+                borderWidth: 3
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  suggestedMin: 1,
+                  suggestedMax: 10
+                }
+              }
+            }
+          });
+        </script>
+        <!--統計グラフ-->
       </div>
     </div>
   </div>

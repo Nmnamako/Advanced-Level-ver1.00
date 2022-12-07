@@ -15,6 +15,10 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
+
+require("chartkick") // グラフ関係
+require("chart.js") // グラフ関係
+
 require('jquery')
 
 Rails.start()
