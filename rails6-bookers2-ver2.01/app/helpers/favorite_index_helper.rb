@@ -1,0 +1,2 @@
+module FavoriteIndexHelper
+end
