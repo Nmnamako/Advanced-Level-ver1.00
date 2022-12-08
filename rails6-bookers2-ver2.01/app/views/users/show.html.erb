@@ -107,6 +107,24 @@
             });
           </script>
         <!--統計グラフ-->
+        
+        <!--サーチ機能-->
+        <div></div>
+        <div>
+          <%= form_with url: user_search_path(@user), method: :get, local: false do |f| %>
+            <%= f.date_field :created_at %>
+            <%= f.submit "検索" %>
+          <%end%>
+        </div>
+        
+        <div id="search_result">
+          <% if @search_book.nil? %>
+            <div></div>
+          <%else%>
+            <%= render 'search', search_book: @search_book %>
+          <%end%>
+        </div>
+        <!--サーチ機能-->
       </div>
     </div>
   </div>

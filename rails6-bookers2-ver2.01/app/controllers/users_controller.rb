@@ -23,6 +23,18 @@ class UsersController < ApplicationController
     @week_comparison = @this_week_book.count.to_f / @last_week_book.count.to_f * 100.to_f
   end
   
+    #サーチ追加
+  def search
+    user_books = User.find(params[:user_id]).books #user_idで取得したユーザーの本の一覧を取得
+    created_time = params[:created_at] #created_timeにcreated_atを代入
+    if created_time == ""
+      @search_book = "日付が選択されていません"
+    else
+      @search_book = user_books.where(created_at: created_time.to_date.all_day).count
+    end
+  end
+  
+  
   def index
     @users = User.all
     @book = Book.new
