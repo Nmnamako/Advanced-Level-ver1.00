@@ -32,6 +32,11 @@ $('#tab-menu a').on('click', function(event) {
   //ここではactiveが追加対象
   //追加されるタイミングは、$(this)の時、つまりタブをクリックした時
   $(this).addClass("active");
+  
+  //.attr()は、HTMLの属性を取得したり設定できるメソッド
+  //ここでは、hrefを取得するよう指定
+  //.show()は要素を表示するメソッドなので、取得したhrefの中身が表示される
+  //表示されるタイミングは、クリックされた時に表示される
   $($(this).attr("href")).show();
   event.preventDefault();
 });
