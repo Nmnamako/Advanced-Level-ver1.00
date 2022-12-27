@@ -55,14 +55,25 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  
   //もしボールの位置のyの値が0未満だったら、符号反転させた値を設定することで、
   //y軸方向の動きの向きを変える
   //yとdyを足した時にcanvasの高さより大きくなってしまったら-dyを入れて向きを変える
   //y+dyが０より小さくなったら-dyで逆方向にいくので跳ね返りが表現される
   //条件分岐内にballRadiusを入れると玉の中心ではなく境界で反射する
-  if(y + dy > canvas.height-ballRadius | y + dy < ballRadius) {
+  if(y + dy < ballRadius) {
     dy = -dy;
   }
+  //cannvasの下にぶつかるとGAMEOVERになる記述
+  else if (y + dy > canvas.height-ballRadius) {
+    //canvas下に当たるとalertが出現
+    alert("GAME OVER")
+    //ここでdocumentをリロード
+    document.location.reload();
+    //ここでintervalを削除
+    clearInterval(interval);
+  }
+  
   
   if(x + dx > canvas.width-ballRadius | x + dx < ballRadius) {
     dx = -dx;
@@ -120,5 +131,6 @@ function keyUpHandler(e){
 //今回の場合はdrawを10ミリ秒ごとに実行される
 //このタイミング関数を使うとdrawが永遠に描き続けられる
 //そのため動きを付けないと何重にも書き足されていく
-setInterval(draw, 10);
+//Gameoverを追加するにあたり,const intervalを追加
+const interval = setInterval(draw, 10);
 
