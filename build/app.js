@@ -66,12 +66,18 @@ function draw() {
   }
   //cannvasの下にぶつかるとGAMEOVERになる記述
   else if (y + dy > canvas.height-ballRadius) {
+    //パドルに衝突判定を与える
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      //パドルに当たるとdyに-dyを代入し、反射させる
+      dy = -dy;
+    } else {
     //canvas下に当たるとalertが出現
     alert("GAME OVER")
     //ここでdocumentをリロード
     document.location.reload();
     //ここでintervalを削除
     clearInterval(interval);
+    }
   }
   
   
