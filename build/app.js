@@ -3,6 +3,11 @@ const canvas = document.getElementById("myCanvas");
 //2D描画コンテキスト,実際に絵を描画するためのツール
 const ctx = canvas.getContext("2d");
 
+
+
+
+
+
 //四角を描画
 ctx.beginPath();
 ctx.rect(20, 40, 50, 50);  //四角の形状と位置の指定 (X,Y,W,H)
