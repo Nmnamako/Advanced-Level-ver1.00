@@ -42,7 +42,10 @@ const bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = [];
   for (let r = 0; r < brickRowCount; r++) {
-    bricks[c] [r] = { x: 0, y: 0 };
+    
+    //ここのstatus1でブロックの存在をさせている
+    //0になると消滅,JS側のシステム？ステータスプロパティというらしい
+    bricks[c] [r] = { x: 0, y: 0, status: 1 };
   }
 }
 
@@ -55,26 +58,27 @@ function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
       
-      //変数に描画位置の情報を代入
-      const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
-      const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-      
-      //ここでc,rの中の数値をリセットしている？
-      //新たに描画したブロックを起点に描画するため
-      bricks[c][r].x = 0;
-      bricks[c][r].y = 0;
-      ctx.beginPath();
-      
-      //ここで描画位置を決める
-      ctx.rect(brickX, brickY, brickWidth, brickHeight);
-      ctx.fillStyle = "#0095DD";
-      ctx.fill();
-      ctx.closePath();
+      //status1でブロック存在させる
+      if (bricks[c][r].status == 1 ) {
+        //変数に描画位置の情報を代入
+        const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        
+        //= 0; だったのをbrickX,Yに変えるとブロックに衝突判定ができた
+        //原理がわからない。要チェックのこと。
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        ctx.beginPath();
+        
+        //ここで描画位置を決める
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+      }
     }
   }
 }
-
-
 
 
 //ボールを配置する指示 canvas.width / 2 で最大高さを割る2して配置
@@ -107,7 +111,9 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  collisionDetection()
   drawBricks();
+  
   
   //もしボールの位置のyの値が0未満だったら、符号反転させた値を設定することで、
   //y軸方向の動きの向きを変える
@@ -185,6 +191,26 @@ function keyUpHandler(e){
     leftPressed = false
   }
 }
+
+
+function collisionDetection() {
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      const b = bricks[c][r];
+      if (b.status == 1) {
+        
+        //canvasの衝突判定と同じ原理
+        if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+          dy = -dy;
+          
+          //status0でブロックが消滅
+          b.status = 0;
+        }
+      }
+    }
+  }
+}
+
 
 //setInterval()は同じ関数を何度も実行できる
 //今回の場合はdrawを10ミリ秒ごとに実行される
