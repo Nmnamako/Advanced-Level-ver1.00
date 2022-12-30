@@ -25,6 +25,58 @@ let dx = 2;
 let dy = -2;
 
 
+//上部のブロック
+const brickRowCount = 3;
+const brickColumnCount = 5;
+const brickWidth = 75;
+const brickHeight = 20;
+const brickPadding = 10;
+//canvasの縁に当たらないように
+const brickOffsetTop = 30;
+const brickOffsetLeft = 30;
+
+
+//下記のコードはリピートで新しいブロックを作ってくれる
+//ここでは衝突検出は行なっていない
+const bricks = [];
+for (let c = 0; c < brickColumnCount; c++) {
+  bricks[c] = [];
+  for (let r = 0; r < brickRowCount; r++) {
+    bricks[c] [r] = { x: 0, y: 0 };
+  }
+}
+
+//ブロック描画ロジック
+//行と列を通してループし、それぞれのブロックのx座標とy座標を設定
+//一回ループを回る毎に大きさbrickWidth x brickHeightのブロックをキャンバスに描画する
+//新たに描画したブロックを起点に位置を指定している。おそらく。
+//描画や位置決めは2個目のfor文で行なっている
+function drawBricks() {
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      
+      //変数に描画位置の情報を代入
+      const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+      const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+      
+      //ここでc,rの中の数値をリセットしている？
+      //新たに描画したブロックを起点に描画するため
+      bricks[c][r].x = 0;
+      bricks[c][r].y = 0;
+      ctx.beginPath();
+      
+      //ここで描画位置を決める
+      ctx.rect(brickX, brickY, brickWidth, brickHeight);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
+    }
+  }
+}
+
+
+
+
 //ボールを配置する指示 canvas.width / 2 で最大高さを割る2して配置
 //canvas,height -30 で中心から下へ配置
 //functionより上に記述したほうがいい？
@@ -55,6 +107,7 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  drawBricks();
   
   //もしボールの位置のyの値が0未満だったら、符号反転させた値を設定することで、
   //y軸方向の動きの向きを変える
@@ -139,4 +192,3 @@ function keyUpHandler(e){
 //そのため動きを付けないと何重にも書き足されていく
 //Gameoverを追加するにあたり,const intervalを追加
 const interval = setInterval(draw, 10);
-
