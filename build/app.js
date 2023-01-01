@@ -168,7 +168,7 @@ function draw() {
 //ここで押したの有無でkeyDownHandlerが実行される、二つ目も同様
 document.addEventListener("keydown", keyDownHandler, false)
 document.addEventListener("keyup", keyUpHandler, false)
-
+document.addEventListener("mousemove", mouseMoveHandler, false)
 
 
 function keyDownHandler(e){
@@ -192,6 +192,18 @@ function keyUpHandler(e){
   }
   else if (e.key == "Left" || e.key == "ArrowLeft" ){
     leftPressed = false
+  }
+}
+
+
+//マウス操作を追加
+//
+function mouseMoveHandler(e){
+  
+  //clientXはブラウザの左端から要素の中央までの距離
+  const relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth/2;
   }
 }
 
