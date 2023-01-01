@@ -27,6 +27,9 @@ let dy = -2;
 //スコアを記録する変数
 let score = 0;
 
+//プレイヤーの残機作成
+let lives = 3;
+
 //上部のブロック
 const brickRowCount = 3;
 const brickColumnCount = 5;
@@ -114,6 +117,7 @@ function draw() {
   drawBall();
   drawPaddle();
   drawScore();
+  drawLives();
   collisionDetection()
   drawBricks();
   
@@ -133,12 +137,27 @@ function draw() {
       //パドルに当たるとdyに-dyを代入し、反射させる
       dy = -dy;
     } else {
-    //canvas下に当たるとalertが出現
-    alert("GAME OVER")
-    //ここでdocumentをリロード
-    document.location.reload();
-    //ここでintervalを削除
-    clearInterval(interval);
+      
+      //canvasの下部にボールが当たると残機を1こ減らす
+      lives --;
+      
+      //残機が全て亡くなった場合に全てのオブジェクトをリセットする
+      if (!lives) {
+        //canvas下に当たるとalertが出現
+        alert("GAME OVER")
+        //ここでdocumentをリロード
+        document.location.reload();
+        //ここでintervalを削除
+        clearInterval(interval);
+        
+        //残機が1つだけ無くなったらパドルとボールの描画位置をリセットする
+      } else {
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
     }
   }
   
@@ -226,6 +245,9 @@ function collisionDetection() {
           //ボールがブロックから反射したらスコアが加算される
           score++;
           
+          
+          
+          
           //スコア数がブロック数の合計と同じならアラート出現する
           if (score == brickRowCount * brickColumnCount) {
             alert("YOU WIN CONGRATULATIONS!")
@@ -247,6 +269,14 @@ function drawScore(){
   //canvasで文字を表示させるにはctx.fillText()が必要
   //Score:は画面文字,${score}は加算されていくスコアポイント,最後の2つの数字はx,y座標
   ctx.fillText(`Score: ${score}`, 8, 20);
+}
+
+
+//ここでスコアの詳細設定を行う、テキストと位置を指定
+function drawLives(){
+  ctx.font = "16px Arial"
+  ctx.fillStyle = "#0095DD"
+  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
 }
 
 //setInterval()は同じ関数を何度も実行できる
