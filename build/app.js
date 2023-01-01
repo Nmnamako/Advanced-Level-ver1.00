@@ -113,6 +113,7 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  drawScore();
   collisionDetection()
   drawBricks();
   
@@ -209,6 +210,16 @@ function collisionDetection() {
           
           //status0でブロックが消滅
           b.status = 0;
+          
+          //ボールがブロックから反射したらスコアが加算される
+          score++;
+          
+          //スコア数がブロック数の合計と同じならアラート出現する
+          if (score == brickRowCount * brickColumnCount) {
+            alert("YOU WIN CONGRATULATIONS!")
+            document.location.reload();
+            clearInterval(interval);
+          }
         }
       }
     }
@@ -216,11 +227,14 @@ function collisionDetection() {
 }
 
 
-
+//ここでスコアの詳細設定を行う
 function drawScore(){
   ctx.font = "16px Arial"
   ctx.fillStyle = "#0095DD"
-  ctx.fillText()
+  
+  //canvasで文字を表示させるにはctx.fillText()が必要
+  //Score:は画面文字,${score}は加算されていくスコアポイント,最後の2つの数字はx,y座標
+  ctx.fillText(`Score: ${score}`, 8, 20);
 }
 
 //setInterval()は同じ関数を何度も実行できる
