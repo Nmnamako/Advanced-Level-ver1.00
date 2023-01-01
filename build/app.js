@@ -24,6 +24,8 @@ let leftPressed = false
 let dx = 2;
 let dy = -2;
 
+//スコアを記録する変数
+let score = 0;
 
 //上部のブロック
 const brickRowCount = 3;
@@ -58,7 +60,7 @@ function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
       
-      //status1でブロック存在させる
+      //statusが、1なら描画するif文を作っている
       if (bricks[c][r].status == 1 ) {
         //変数に描画位置の情報を代入
         const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
@@ -197,6 +199,8 @@ function collisionDetection() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
       const b = bricks[c][r];
+      
+      //statusが、1なら衝突判定を出すif文を作成
       if (b.status == 1) {
         
         //canvasの衝突判定と同じ原理
@@ -211,6 +215,13 @@ function collisionDetection() {
   }
 }
 
+
+
+function drawScore(){
+  ctx.font = "16px Arial"
+  ctx.fillStyle = "#0095DD"
+  ctx.fillText()
+}
 
 //setInterval()は同じ関数を何度も実行できる
 //今回の場合はdrawを10ミリ秒ごとに実行される
