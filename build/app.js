@@ -1,5 +1,6 @@
 //キャンバスを取得するためのコード
 const canvas = document.getElementById("myCanvas");
+
 //2D描画コンテキスト,実際に絵を描画するためのツール
 const ctx = canvas.getContext("2d");
 
@@ -39,7 +40,6 @@ const brickPadding = 10;
 //canvasの縁に当たらないように
 const brickOffsetTop = 30;
 const brickOffsetLeft = 30;
-
 
 //下記のコードはリピートで新しいブロックを作ってくれる
 //ここでは衝突検出は行なっていない
@@ -148,7 +148,9 @@ function draw() {
         //ここでdocumentをリロード
         document.location.reload();
         //ここでintervalを削除
-        clearInterval(interval);
+        
+        //requestAnimationFrame(draw);で描画を改善するのでコメントアウトする
+        //clearInterval(interval);
         
         //残機が1つだけ無くなったらパドルとボールの描画位置をリセットする
       } else {
@@ -181,6 +183,9 @@ function draw() {
   //ここで初めてボールが動き始める
   x += dx;
   y += dy;
+  
+  //ブラウザ側にフレームレートの制御を託している
+  requestAnimationFrame(draw);
 }
 
 //setInterval()の上に記述するとのこと
@@ -245,14 +250,13 @@ function collisionDetection() {
           //ボールがブロックから反射したらスコアが加算される
           score++;
           
-          
-          
-          
           //スコア数がブロック数の合計と同じならアラート出現する
           if (score == brickRowCount * brickColumnCount) {
             alert("YOU WIN CONGRATULATIONS!")
             document.location.reload();
-            clearInterval(interval);
+            
+            //requestAnimationFrame(draw);で描画を改善するのでコメントアウトする
+            //clearInterval(interval);
           }
         }
       }
@@ -284,4 +288,9 @@ function drawLives(){
 //このタイミング関数を使うとdrawが永遠に描き続けられる
 //そのため動きを付けないと何重にも書き足されていく
 //Gameoverを追加するにあたり,const intervalを追加
-const interval = setInterval(draw, 10);
+
+//requestAnimationFrame(draw);で描画を改善するのでコメントアウトする
+//const interval = setInterval(draw, 10);
+
+//requestAnimationFrame(draw);関係
+draw();
