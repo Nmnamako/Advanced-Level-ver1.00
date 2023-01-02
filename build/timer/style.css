@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.until {
+  margin-top: 50px;
+}
+
+body {
+  text-align: center;
+  color: white;
+  background-color: #FFEEFF;
+  font-family: fantasy;
+}
+
+.until {
+  padding-top:5px;
+  background-color: #FF9999;
+}
+
+.timer1 {
+  position: relative;
+  display:inline-block;
+  background-color: #FF9999;
+  padding:80px 90px 80px 90px;
+  border-radius: 20px;
+  margin: 20px 5px 0px 5px ;
+}
+
+.timer2 {
+  position: relative;
+  display:inline-block;
+  background-color: #FF9999;
+  padding:80px 90px 80px 90px;
+  border-radius: 20px;
+  margin: 20px 5px 0px 5px ;
+}
+
+.timer3 {
+  position: relative;
+  display:inline-block;
+  background-color: #FF9999;
+  padding:80px 90px 80px 90px;
+  border-radius: 20px;
+  margin: 20px 5px 0px 5px ;
+}
+
+.allText1 {
+  position: absolute;
+  left: 100px;
+}
+
+.allText2 {
+  position: absolute;
+  left: 100px;
+}
+
+.allText3 {
+  position: absolute;
+  left: 100px;
+}
+
+#hour {
+  position: absolute;
+  font-size: 40px;
+  top: 60px;
+  left: 30px;
+}
+
+#min {
+  position: absolute;
+  font-size: 40px;
+  top: 60px;
+  left: 30px;
+}
+
+#sec {
+  position: absolute;
+  font-size: 40px;
+  top: 60px;
+  left: 30px;
+}

@@ -12,4 +12,12 @@ function countdown() {
   document.getElementById("sec").textContent = String(sec).padStart(2,"0");
   setTimeout(countdown,1000); //１秒前毎に繰り返す
 };
+
+function changeColor(idname){
+  var obj = document.getElementById(idname);
+  obj.style.color = '#ffffff';            //文字色を白にする
+  obj.style.backgroundColor = '#ff0000';  //背景色を赤にする
+}
+
+
 countdown();
