@@ -27,3 +27,87 @@ main {
   /*not()で2つあるタグの最初の方には適応しない様にしている*/
   margin-top: 20px;
 }
+
+/*
+@keyframes showTextTop {
+  0%{
+    opacity: 0;
+    transform: translateY(-90px);
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes showTextBottom {
+  0%{
+    opacity: 0;
+    transform: translateY(90px);
+  }
+  100%{
+    opacity: 1;
+  }
+}*/
+
+@keyframes showTextBottom {
+  0%{
+
+    /*transkateYで文字の出現位置を変更している*/
+    transform: translateY(100%)
+  }
+  100%{
+    transform: translate(0px);
+  }
+}
+
+@keyframes showTextTop {
+  0%{
+    /*transkateYで文字の出現位置を変更している*/
+    transform: translateY(-100%)
+  }
+  100%{
+    transform: translate(0px);
+  }
+}
+
+.textAnimation span {
+  display: inline-block;
+}
+
+/*二重にspanが掛かっている箇所の外側(親要素)のみ適応させる*/
+.textAnimation > span {
+
+  /*内側のspanが外側のspanを越えたら見えなくなる*/
+  overflow: hidden;
+}
+
+.textAnimation > span:nth-of-type(odd) > span {
+  animation: showTextTop 2s backwards;
+}
+
+.textAnimation > span:nth-of-type(even) > span {
+  animation: showTextBottom 2s backwards;
+}
+
+
+
+/*
+.textAnimation span:nth-of-type(odd) { */
+
+  /*inline-blockにすることでshowTextのtransformが適用される*/
+  /*transformはインラインブロックのみ対応している？*/
+  /*display: inline-block;*/
+
+  /*backwardsでshowTextのopacity0でスタートさせることができる*/
+  /*ease-outで文字が動く最後のフレームでゆっくりにする*/
+
+  /*
+  animation: showTextTop ease-out 3s backwards;
+}
+
+.textAnimation span:nth-of-type(even) {
+  display: inline-block;
+  animation: showTextBottom ease-out 3s backwards;
+}*/
+
+
