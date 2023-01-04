@@ -1,23 +1,41 @@
-let elapsedTime = 0;
+let minTime = 1;
+let secTime = 5;
 
-//progress()に表示するテキストを格納する
-function progress() {
-  document.getElementById("time").textContent = elapsedTime + "秒経過";
+
+function progressMin(){
+  document.getElementById("min").textContent = minTime + "分";
 }
 
+//progress()に表示するテキストを格納する
+function progressSec() {
+  document.getElementById("sec").textContent = secTime + "秒";
+}
 
 //id="time"のテキストをelapsedTimeの中身を表示する
 //これがないと0が表示されない
-progress();
+progressMin();
+progressSec();
 
-//
+//secTimeに1を加算もしくは減少していく関数
 const timeId = setInterval(function(){
-  elapsedTime++;
+  secTime--;
   
-  //elapsedTimeに加算した後に再度描画する指示を出している
-  progress();
+  //secTimeに加算,減少した後に再度描画する指示を出している
+  progressSec();
   
-  if (elapsedTime == 5 ){
-    clearInterval(timeId);
-  }
+  if (secTime == -1 ){
+    secTime = 5;
+    minTime--;
+    progressSec();
+    progressMin();
+    
+    if (minTime == 0){
+      clearInterval(timeId);
+      
+      //ページ全体をリロードしてしまう
+      //document.location.reload();
+    };
+    //加算,減少を停止させる
+    //clearInterval(timeId);
+  };
 },1000);
