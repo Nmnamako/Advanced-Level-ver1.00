@@ -4,6 +4,8 @@ let secTime = 3;
 //タイマー停止用
 let interval;
 
+//falseかtrueかで、作業時間と休憩時間を変更する
+let changeTime = false;
 
 //document.getElementById("test").addEventListener("click", function(){
 //  clearInterval(timeId);
@@ -11,12 +13,13 @@ let interval;
 
 function progressMin(){
   document.getElementById("min").textContent = minTime + "分";
-}
+};
 
 //progress()に表示するテキストを格納する
 function progressSec() {
   document.getElementById("sec").textContent = secTime + "秒";
-}
+};
+
 
 //id="time"のテキストをelapsedTimeの中身を表示する
 //これがないと0が表示されない
@@ -33,27 +36,48 @@ function start() {
         minTime--;
         progressSec();
         progressMin();
-        if (minTime == -1){
-          alert("時間です")
+        if (minTime == -1 && changeTime == false ){
+          
+          //休憩時間を設けるためにtureに変更
+          changeTime = true;
           clearInterval(interval);
           reset();
           interval = null;
+          
+          //alertだが、音で知らせてノーストップで時間を進める予定
+          alert("休憩時間です");
+        } else if (minTime == -1 && changeTime == true) {
+          
+          //作業時間を設けるためfalseに変更
+          changeTime = false;
+          clearInterval(interval);
+          reset();
+          interval = null;
+          alert("開始時間です");
         };
       };
     },1000);
   };
-}
+};
 
 function stop() {
   clearInterval(interval);
   interval = null;
-}
+};
 
+//reset()内でchangeTimeの中身次第で作業時間と休憩時間を切り替える
 function reset() {
-  minTime = 25;
-  secTime = 0;
-  progressSec();
-  progressMin();
+  if (changeTime == true) {
+    minTime = 1;
+    secTime = 0;
+    progressSec();
+    progressMin();
+  } else {
+    minTime = 25;
+    secTime = 0;
+    progressSec();
+    progressMin();
+  };
 };
 
 document.getElementById("start").addEventListener("click", function(){
