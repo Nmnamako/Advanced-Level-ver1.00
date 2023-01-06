@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 1000px;
+  margin: 50px auto;
+  height: 200vh;
+}
+
+.h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 30px;
+}
+
+#modalOpen, .modalClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 40px;
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modalClose {
+  margin: 30px auto 0;
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 500px;
+  z-index: 2;
+
+  /*クリック,タッチを無効化する*/
+  pointer-events: none;
+  opacity: 0;
+}
+
+#mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  z-index: 1;
+  /*クリック,タッチを無効化する*/
+  pointer-events: none;
+}
+
+#modal.active {
+  opacity: 1;
+
+  /*通常通りクリックできる*/
+  pointer-events: auto;
+}
+
+#mask.active {
+  opacity: 1;
+
+  /*通常通りクリックできる*/
+  pointer-events: auto;
+}
