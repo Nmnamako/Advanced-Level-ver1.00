@@ -3,8 +3,37 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  height: 200vh;
+  background-color: gray;
+}
+
+.timerAll {
+  padding-top: 30px;
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#modalOpen {
+  cursor: pointer;
+}
+
+
+#modalClose {
+  cursor: pointer;
+}
+
+#modal.active {
+  opacity: 1;
+  pointer-events: auto;
 }

@@ -1,5 +1,11 @@
 let minTime = 1;
-let secTime = 3;
+let secTime = 10;
+
+//const element = document.getElementById("test1");
+//element.innerHTML = minTime;
+
+let container = document.getElementById("modal")
+
 
 //タイマー停止用
 let interval;
@@ -20,6 +26,10 @@ function progressSec() {
   document.getElementById("sec").textContent = secTime + "秒";
 };
 
+
+function modalOpen() {
+  
+}
 
 //id="time"のテキストをelapsedTimeの中身を表示する
 //これがないと0が表示されない
@@ -63,6 +73,7 @@ function start() {
 function stop() {
   clearInterval(interval);
   interval = null;
+  test001();
 };
 
 //reset()内でchangeTimeの中身次第で作業時間と休憩時間を切り替える
@@ -87,6 +98,19 @@ document.getElementById("start").addEventListener("click", function(){
 document.getElementById("stop").addEventListener("click", function(){
   stop();
 });
+
+document.getElementById("modalOpen").addEventListener("click", function(){
+  container.classList.add("active");
+});
+
+document.getElementById("close").addEventListener("click", function(){
+  container.classList.remove("active");
+});
+
+
+function test001(){
+  container.classList.add("active");
+}
 
 //--------------------------------------------------------
 //secTimeに1を加算もしくは減少していく関数
