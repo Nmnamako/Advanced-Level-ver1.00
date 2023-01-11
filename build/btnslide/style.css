@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  display: block;
+  width: 300px;
+  padding: 20px 0;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+
+  /*linear-gradientは以下参照*/
+  /*https://developer.mozilla.org/ja/docs/Web/CSS/gradient/linear-gradient*/
+  background-image: linear-gradient(
+    to right,
+    #a48c61 0%,
+    #a48c61 50%,
+    #000000 50%,
+    #000000 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+
+  /*transitionで変わる時間を変えられる*/
+  transition: background-position ease 2s;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+a:hover {
+  background-position: 0 0;
+}
+
+/****** Base style. ******/
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo";
+}

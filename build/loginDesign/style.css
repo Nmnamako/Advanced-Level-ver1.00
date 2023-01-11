@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #34495e;
+}
+
+.box {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #191919;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+
+  /*????*/
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ユーザーIDとパスワードinputのスタイル */
+.box input[type="text"], .box input[type="password"]{
+  /*後で出てくるので0px指定する意味がわからない*/
+  border: 0px;
+
+  /*背景色をなくす*/
+  background: none;
+
+  /*インライン要素なのでblockにして縦並びにする*/
+  display: block;
+
+  /*左寄せを中央へ*/
+  margin: 0 auto;
+  /*左寄せを中央へ*/
+  text-align: center;
+
+  /*独自で変更追加*/
+  margin-top: 10px;
+
+  /*inputの枠に色をつける*/
+  border: 2px solid #3498db;
+
+  /*inputサイズUP*/
+  padding: 14px 10px;
+
+  /*inputの横幅サイズUP*/
+  width: 200px;
+
+  /*????*/
+  outline: none;
+
+  /*入力文字色変更*/
+  color: white;
+
+  /*input枠に丸みを追加*/
+  border-radius: 24px;
+
+  /*下のフォーカスの変化時間をここで調整*/
+  transition: 0.5s;
+}
+
+/* 入力ボックスがフォーカスされたときのスタイル（幅が大きくなる＆枠の色が変わる） */
+.box input[type="text"]:focus, .box input[type="password"]:focus{
+  width: 280px;
+  border-color: #2ecc71;
+}
+
+/* Loginボタンのスタイル */
+.box input[type="submit"]{
+  /*後で出てくるので0px指定する意味がわからない*/
+  border: 0;
+
+  /*背景色をなくした*/
+  background: none;
+
+  /*インライン要素をブロックに変更,意味はあるのか？*/
+  display: block;
+
+  /*左寄せを中央へ*/
+  margin: 20px auto;
+
+  /*左寄せを中央へ*/
+  text-align: center;
+
+  /*枠線色追加*/
+  border: 2px solid #2ecc71;
+
+  /*inputサイズ変更*/
+  padding: 14px 40px;
+
+  /*????*/
+  outline: none;
+
+  /*文字色変更*/
+  color: white;
+
+  /*枠に丸み追加*/
+  border-radius: 24px;
+
+  /*変化時間を記述*/
+  transition: 0.25s;
+
+  /*マウスをポインターに変更*/
+  cursor: pointer;
+}
+
+/* Loginボタンをマウスオーバーしたときのスタイル */
+.box input[type="submit"]:hover{
+  /*ホバー時の背景色変更*/
+  background: #2ecc71;
+   
+}
