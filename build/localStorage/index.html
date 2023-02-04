@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <title>LocalStorage</title>
+</head>
+<body>
+  <button id="test1">test1</button>
+  <div id="change1">0</div>
+  <div>
+    LocalStorageを使ったコード<br>
+    ボタンを押すと数字が変わり、リロードすると変わった数字が<br>
+    localストレージに保存されている。
+  </div>
+  <div>
+    sessionStorageもあるが、あちらはタブを閉じるとデータが破棄される<br>
+    localStorageはユーザーが意図的に削除しない限り残り続ける<br>
+    ブラウザの設定からデータを消すことも可能？
+  </div>
+</body>
+</html>
