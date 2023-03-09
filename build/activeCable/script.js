@@ -13,11 +13,13 @@
 // document.bgColor = colors[i];
 
 let obj = document.getElementById("sample");
+
 obj.style.backgroundColor = "#fff";
 obj.style.backgroundColor = "white";
 obj.style.backgroundColor = "rgb( 255, 255, 255 )";
 
 let colorFlg = 0;
+
 function hoge() {
   // 背景色を変更
   let obj = document.getElementById("sample");
@@ -30,3 +32,16 @@ function hoge() {
     colorFlg = 0;
   }
 }
+
+
+
+
+const intervalId = setInterval(() => {
+  if(colorFlg == 0){
+    obj.style.backgroundColor = "#3eb810";
+    colorFlg = 1;
+  }else{
+    obj.style.backgroundColor = "#009688";
+    colorFlg = 0;
+  }
+}, 1000);
