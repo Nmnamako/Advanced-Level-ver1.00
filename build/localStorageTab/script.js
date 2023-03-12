@@ -40,11 +40,54 @@ let tab4 = document.getElementsByClassName('tab_class')[3];
 // document.getElementById("change1").textContent = localStorage.getItem("lstest");
 
 
+
+// 使用例
 let test1 = document.getElementsByClassName("test")[0];
 let test2 = document.getElementsByClassName("test")[1];
+let test3 = document.getElementsByClassName("test")[2];
 
 let btnA = document.getElementsByClassName("btnA")[0];
 let btnB = document.getElementsByClassName("btnB")[0];
+let btnC = document.getElementsByClassName("btnC")[0];
+
+let changeActive = 1;
+let myActive = localStorage.getItem("changeActive");
+
+btnA.addEventListener("click", () => {
+  changeActive = 1;
+  localStorage.setItem("changeActive", changeActive);
+  //localStorage.saveKey = changeActive;
+});
+
+btnB.addEventListener("click", () => {
+  changeActive = 2;
+  localStorage.setItem("changeActive", changeActive);
+  //localStorage.saveKey = changeActive;
+});
+
+btnC.addEventListener("click", () => {
+  changeActive = 3;
+  localStorage.setItem("changeActive", changeActive);
+  //localStorage.saveKey = changeActive;
+});
+
+window.onload = () => {
+  if (myActive == 1) {
+    test1.classList.add("active");
+    test2.classList.remove("active");
+    test3.classList.remove("active");
+  } else if (myActive == 2){
+    test1.classList.remove("active");
+    test2.classList.add("active");
+    test3.classList.remove("active");
+  } else if (myActive == 3) {
+    test1.classList.remove("active");
+    test2.classList.remove("active");
+    test3.classList.add("active");
+  } else {
+
+  };
+};
 
 
 // console.log(test1);
