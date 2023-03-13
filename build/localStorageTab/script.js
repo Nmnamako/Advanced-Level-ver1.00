@@ -56,18 +56,28 @@ let myActive = localStorage.getItem("changeActive");
 btnA.addEventListener("click", () => {
   changeActive = 1;
   localStorage.setItem("changeActive", changeActive);
+  test1.classList.add("active");
+  test2.classList.remove("active");
+  test3.classList.remove("active");
+
   //localStorage.saveKey = changeActive;
 });
 
 btnB.addEventListener("click", () => {
   changeActive = 2;
   localStorage.setItem("changeActive", changeActive);
+  test1.classList.remove("active");
+  test2.classList.add("active");
+  test3.classList.remove("active");
   //localStorage.saveKey = changeActive;
 });
 
 btnC.addEventListener("click", () => {
   changeActive = 3;
   localStorage.setItem("changeActive", changeActive);
+  test1.classList.remove("active");
+  test2.classList.remove("active");
+  test3.classList.add("active");
   //localStorage.saveKey = changeActive;
 });
 
