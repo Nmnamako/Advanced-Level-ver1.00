@@ -3,4 +3,11 @@
   <%= list.title %>
   
   <%= link_to list.title, list_path(list.id) %>
+  
+  <p>画像</p>
+  <% if list.image.present? %>
+    <%= image_tag list.image, size: "200x200" %>
+  <%else%>
+    画像なし
+  <%end%>
 <%end%>
